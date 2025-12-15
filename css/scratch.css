@@ -1,0 +1,30 @@
+/* From-scratch stylesheet for scratch.html */
+body{
+  margin:0;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  color:#1f2937;
+  background:#f4f7fb;
+}
+.header{
+  background:#0b2447;
+  color:#fff;
+  padding:22px 14px;
+}
+.wrap{max-width:980px;margin:0 auto;padding:14px;}
+.block{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:16px;
+  margin:14px 0;
+}
+a{color:#0b5ed7;}
+a:hover{text-decoration:none;}
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#e8f1ff;
+  border:1px solid #cfe2ff;
+  font-size:.9rem;
+}

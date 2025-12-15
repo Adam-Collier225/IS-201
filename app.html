@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web App | Guessing Game</title>
+  <style>
+    body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#0b1220;color:#e5e7eb;}
+    .wrap{max-width:780px;margin:0 auto;padding:22px;}
+    .card{background:#111a2e;border:1px solid #233253;border-radius:16px;padding:16px;}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+    input{flex:1 1 180px;padding:10px 12px;border-radius:12px;border:1px solid #2b3a60;background:#0b1220;color:#e5e7eb;}
+    button{padding:10px 12px;border-radius:12px;border:1px solid #2b3a60;background:#1f2a44;color:#e5e7eb;cursor:pointer;}
+    a{color:#93c5fd;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="scratch.html">← Back to Scratch Page</a> • <a href="index.html">Home</a> • <a href="resume.html">Résumé</a></p>
+    <div class="card">
+      <h1>Hot-or-Cold Guessing Game</h1>
+      <p>Guess a number 1–100.</p>
+      <div class="row">
+        <input id="guess" type="number" min="1" max="100" placeholder="Enter guess (1–100)">
+        <button id="btnGuess">Guess</button>
+        <button id="btnNew">New Game</button>
+      </div>
+      <p id="status" style="margin-top:12px;">Make your first guess.</p>
+    </div>
+  </div>
+  <script>
+    let target = Math.floor(Math.random()*100)+1;
+    function newGame(){
+      target = Math.floor(Math.random()*100)+1;
+      document.getElementById('status').textContent = 'New game started. Guess 1–100.';
+      document.getElementById('guess').value = '';
+      document.getElementById('guess').focus();
+    }
+    function guess(){
+      const n = Number(document.getElementById('guess').value);
+      if(!Number.isFinite(n) || n<1 || n>100){
+        document.getElementById('status').textContent = 'Enter a valid number 1–100.';
+        return;
+      }
+      const diff = Math.abs(n-target);
+      if(diff===0){ document.getElementById('status').textContent = '✅ Correct!'; return; }
+      if(diff<=5){ document.getElementById('status').textContent = '🔥 Very hot'; return; }
+      if(diff<=10){ document.getElementById('status').textContent = '🌡️ Warm'; return; }
+      if(diff<=20){ document.getElementById('status').textContent = '😐 Cool'; return; }
+      document.getElementById('status').textContent = '🧊 Cold';
+    }
+    document.getElementById('btnNew').addEventListener('click', newGame);
+    document.getElementById('btnGuess').addEventListener('click', guess);
+    document.getElementById('guess').addEventListener('keydown', e => { if(e.key==='Enter') guess(); });
+  </script>
+</body>
+</html>
